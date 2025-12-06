@@ -6,18 +6,6 @@ router.get("/", (req, res) => {
     res.redirect("/")
 });
 
-router.get("/test/:id", (req, res) => {
-    res.render("game", {
-        title: "test | Balls",
-        options: [
-            { name: "Table Top Sim", color: "#ff0022" },
-            { name: "Oh no Anyway", color: "#ff00ff" },
-            { name: "1234", color: "#ffaa22" },
-            { name: "pee", color: "#00ff22" },
-        ],
-    })
-})
-
 router.get("/:id", (req, res) => {
     if (connections[req.params.id] == null) {
         return res.redirect("/");
@@ -31,6 +19,32 @@ router.get("/:id", (req, res) => {
         title: req.params.id + " | Balls",
         options: connections[req.params.id],
     })
+})
+
+router.post("/:id", (req, res) => {
+    if (connections[req.params.id] == null) {
+        return res.redirect("/");
+    }
+
+    if (connections.options == null || connections.options.size === 0) {
+        return res.redirect("/");
+    }
+
+    const connection = connections[req.params.id];
+    const option = req.body.options;
+    let found = false
+    for (let o in connection.options) {
+        if (option === o) {
+            found = true
+            break
+        }
+    }
+
+    if (!found) {
+        res.redirect("/game/"+req.params.id);
+    }
+
+    connection.addOption(req.userId, req.body.options);
 })
 
 module.exports = router;
