@@ -1,0 +1,11 @@
+
+<div style="height: 100px"></div>
+
+<div class="flex center h-full">
+    {{#each options as | option |}}
+    <form method="POST" onclick="submit()">
+        <input type="hidden" name="option" value="{{option}}">
+        {{option.name}}
+    </form>
+    {{/each}}
+</div>
