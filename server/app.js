@@ -23,6 +23,17 @@ module.exports = function createServer() {
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
 
+    app.use((req, res, next) => {
+        if (req.cookies == null || req.cookies.identity == null) {
+            const id = createUserId()
+            res.cookie("identity", id);
+            req.userId = id
+        } else {
+            req.userId = req.cookies.identity;
+        }
+        next()
+    });
+
     app.use("/", indexRouter);
     app.use("/game", gameRouter);
 
@@ -45,4 +56,14 @@ module.exports = function createServer() {
     });
 
     return {app, server: httpServer}
+}
+
+function createUserId() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz_@!"
+    const randomChar = () => chars[Math.floor(Math.random() * chars.length)];
+    let id = ""
+    for (let i = 0; i < 32; i++) {
+        id += randomChar()
+    }
+    return id;
 }

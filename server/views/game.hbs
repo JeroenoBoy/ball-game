@@ -1,11 +1,22 @@
 
-<div style="height: 100px"></div>
+<h1 class="text-center">
+    {{ headerText }}
+</h1>
 
-<div class="flex center h-full">
-    {{#each options as | option |}}
-    <form method="POST" onclick="submit()">
-        <input type="hidden" name="option" value="{{option}}">
-        {{option.name}}
-    </form>
-    {{/each}}
+<div class="container h-full">
+    <div class="grid-2 gap-md">
+        {{#each options as | option |}}
+            <form method="POST"
+                  onclick="submit()" class="card card-btn as-square"
+                  style="
+                    background-color: {{option.color}}
+                  "
+            >
+                <div class="center flex h-full">
+                    <input type="hidden" name="option" value="{{option.name}}">
+                    {{option.name}}
+                </div>
+            </form>
+        {{/each}}
+    </div>
 </div>

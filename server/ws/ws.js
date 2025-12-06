@@ -17,6 +17,14 @@ class WsConnection {
         this.connection = connection;
         this.code = code;
     }
+
+    /**
+     * @param {String} user
+     * @param {String} option
+     */
+    addOption(user, option) {
+        this.connection.emit("addOption", {user, option});
+    }
 }
 
 module.exports.WsConnection = WsConnection;
