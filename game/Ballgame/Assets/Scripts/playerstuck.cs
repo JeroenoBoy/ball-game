@@ -27,7 +27,7 @@ public class playerstuck : MonoBehaviour
             timed = maxtime;
 
             float distance = Vector3.Distance(transform.position, playerpos);
-            Debug.Log(distance);
+            
             if (distance < offsetDistance)
             {
                 rb.AddForce(Vector2.up * rbforce);
