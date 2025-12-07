@@ -22,6 +22,7 @@ namespace Test {
             Debug.Log("Starting Connection");
             yield return controller.Connect();
             Debug.Log("Controller successfully connected");
+            controller.SetTitle("GD Gilde Thema");
             controller.SetOptions(new List<GameOptionDto>() {
                 new ("A", ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(1f / 4f, 0.5f, 0.5f))),
                 new ("B", ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(2f / 4f, 0.5f, 0.5f))),
@@ -40,7 +41,7 @@ namespace Test {
         }
 
         private void HandleCodeReceivedDto(string code) {
-            
+            Debug.Log($"Received Code {code}");
         }
     }
 }

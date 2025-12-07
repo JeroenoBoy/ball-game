@@ -1,9 +1,9 @@
 
-<h1 class="text-center">
-    {{ headerText }}
-</h1>
-
 <div class="container h-full">
+    <h1 class="text-center">
+        {{ headerText }}
+    </h1>
+
     <div class="grid-2 gap-md">
         {{#each options as | option |}}
             <form method="POST"
@@ -12,8 +12,8 @@
                     background-color: {{option.color}}
                   "
             >
+                <input type="hidden" name="option" value="{{option.name}}">
                 <div class="center flex h-full">
-                    <input type="hidden" name="option" value="{{option.name}}">
                     {{option.name}}
                 </div>
             </form>

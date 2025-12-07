@@ -1,6 +1,12 @@
+using Newtonsoft.Json;
+
 namespace Sockets {
-    public struct GameOptionDto {
+    [System.Serializable]
+    [JsonObject]
+    public class GameOptionDto {
+        [JsonProperty]
         public string name;
+        [JsonProperty]
         public string color;
         
         public GameOptionDto(string name, string color) {

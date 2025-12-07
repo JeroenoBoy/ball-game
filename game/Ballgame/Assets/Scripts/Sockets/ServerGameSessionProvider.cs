@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using SocketIOClient;
+using SocketIOClient.Newtonsoft.Json;
 using Sockets.Exceptions;
 using UnityEngine;
 
@@ -24,10 +26,15 @@ namespace Sockets {
         
         public IEnumerator Connect() {
             socket = new SocketIOUnity(uri);
+            socket.JsonSerializer = new NewtonsoftJsonSerializer();
             socket.OnUnityThread("code", HandleCodeReceived);
             socket.OnUnityThread("playerJoin", HandlePlayerJoin);
             Task task = socket.ConnectAsync();
             yield return new WaitUntil(() => task.IsCompleted);
+            if (task.IsFaulted) {
+                throw task.Exception ?? new Exception("Task failed without additional data");
+            }
+            task.Dispose();
             yield return new WaitWhile(() => string.IsNullOrEmpty(code));
         }
         

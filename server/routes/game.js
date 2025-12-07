@@ -7,44 +7,50 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-    if (connections[req.params.id] == null) {
+    const connection = connections[req.params.id];
+    if (connection == null) {
         return res.redirect("/");
     }
 
-    if (connections.options == null || connections.options.size === 0) {
+    if (connection.options == null || connection.options.length === 0) {
         return res.redirect("/");
     }
 
     res.render("game", {
         title: req.params.id + " | Balls",
-        options: connections[req.params.id],
+        headerText: connection.title,
+        options: connection.options,
     })
 })
 
 router.post("/:id", (req, res) => {
-    if (connections[req.params.id] == null) {
-        return res.redirect("/");
-    }
-
-    if (connections.options == null || connections.options.size === 0) {
-        return res.redirect("/");
-    }
-
     const connection = connections[req.params.id];
-    const option = req.body.options;
+    if (connection == null) {
+        return res.redirect("/");
+    }
+
+    if (connection.options == null || connection.options.length === 0) {
+        return res.redirect("/");
+    }
+
+    const option = req.body.option;
     let found = false
-    for (let o in connection.options) {
-        if (option === o) {
+    for (let o of connection.options) {
+        if (option === o.name) {
             found = true
             break
         }
     }
 
     if (!found) {
-        res.redirect("/game/"+req.params.id);
+        return res.redirect("/game/"+req.params.id);
     }
 
     connection.playerJoin(req.userId, req.body.options);
+    return res.render("gameConfirmed", {
+        headerText: connection.title,
+        option: option
+    })
 })
 
 module.exports = router;

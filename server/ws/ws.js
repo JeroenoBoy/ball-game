@@ -1,11 +1,14 @@
 const { Server } = require("socket.io")
 const {getOptionsHandler} = require("./getOptionsHandler");
+const {getTitleHandler} = require("./getTitleHandler");
 
 class WsConnection {
     /** @type {import("socket.io").Socker} */
     connection;
     /** @type {String} */
     code
+    /** @type {String} */
+    title
     /** @type {{name: String, color: String}[]} */
     options = []
 
@@ -45,22 +48,25 @@ module.exports.createWsServer = (app, httpServer) => {
         console.log(`Incomming connection from ${socket.id}`);
         next()
     })
+
     io.on("connection", (socket) => {
         console.log(`Client connecting with id ${socket.id}`)
 
         let code = ""
         do {
             code = createCode()
-        } while (module.exports.connections[code] == null)
+        } while (module.exports.connections[code]);
 
         const wsConnection = new WsConnection(socket, code)
         module.exports.connections[code] = wsConnection;
+
         socket.emit("code", code);
 
         getOptionsHandler(wsConnection)
+        getTitleHandler(wsConnection)
 
         socket.on("disconnect", () => {
-            module.exports.connections[code] = null;
+            delete module.exports.connections[code];
         })
     })
 };

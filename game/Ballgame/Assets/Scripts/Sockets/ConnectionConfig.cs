@@ -29,6 +29,6 @@ namespace Sockets {
         }
         
         [field: SerializeField] public bool useMockServer = false;
-        [field: SerializeField] public string ConnectionUrl { get; private set; } = "https://balls.jeroenvdg.com/ws";
+        [field: SerializeField] public string ConnectionUrl { get; private set; } = "https://balls.jeroenvdg.com";
     }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ConnectionConfig
   m_EditorClassIdentifier: 
   useMockServer: 0
-  <ConnectionUrl>k__BackingField: https://balls.jeroenvdg.com/ws
+  <ConnectionUrl>k__BackingField: https://balls.jeroenvdg.com
