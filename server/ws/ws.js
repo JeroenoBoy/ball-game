@@ -22,8 +22,8 @@ class WsConnection {
      * @param {String} user
      * @param {String} option
      */
-    addOption(user, option) {
-        this.connection.emit("addOption", {user, option});
+    playerJoin(user, option) {
+        this.connection.emit("playerJoin", {user, option});
     }
 }
 
@@ -41,7 +41,13 @@ module.exports.connections = {}
 module.exports.createWsServer = (app, httpServer) => {
 
     const io = new Server(httpServer);
+    io.use((socket, next) => {
+        console.log(`Incomming connection from ${socket.id}`);
+        next()
+    })
     io.on("connection", (socket) => {
+        console.log(`Client connecting with id ${socket.id}`)
+
         let code = ""
         do {
             code = createCode()

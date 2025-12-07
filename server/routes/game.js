@@ -44,7 +44,7 @@ router.post("/:id", (req, res) => {
         res.redirect("/game/"+req.params.id);
     }
 
-    connection.addOption(req.userId, req.body.options);
+    connection.playerJoin(req.userId, req.body.options);
 })
 
 module.exports = router;

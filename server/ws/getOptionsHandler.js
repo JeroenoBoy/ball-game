@@ -3,7 +3,7 @@
  */
 function getOptionsHandler(wsConnection) {
     const code = wsConnection.code
-    wsConnection.connection.on(data => {
+    wsConnection.connection.on("options", data => {
         if (!(data instanceof Array)) {
             console.log(`Connection ${code} gave invalid data`)
             return
