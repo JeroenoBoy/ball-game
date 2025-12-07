@@ -46,7 +46,7 @@ router.post("/:id", (req, res) => {
         return res.redirect("/game/"+req.params.id);
     }
 
-    connection.playerJoin(req.userId, req.body.options);
+    connection.playerJoin(req.userId, option);
     return res.render("gameConfirmed", {
         headerText: connection.title,
         option: option
