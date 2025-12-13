@@ -31,8 +31,6 @@ public class PlayerToTrack : MonoBehaviour {
             return;
         }
 
-        Vector3 pos = closestPlayer.position;
-        pos.z = -10;
         cinemachineCamera.Target.TrackingTarget = closestPlayer;
     }
 }
