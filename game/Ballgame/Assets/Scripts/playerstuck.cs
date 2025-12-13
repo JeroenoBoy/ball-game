@@ -10,6 +10,7 @@ public class playerstuck : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float rbforce;
     [SerializeField] float offsetDistance;
+    [SerializeField] int Options;
     
    
 
