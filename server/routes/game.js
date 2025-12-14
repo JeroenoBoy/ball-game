@@ -1,4 +1,5 @@
 const express = require("express");
+const QRCode = require("qrcode");
 const {connections} = require("../ws/ws");
 const router = express.Router();
 
@@ -21,6 +22,19 @@ router.get("/:id", (req, res) => {
         headerText: connection.title,
         options: connection.options,
     })
+})
+
+router.get("/:id/code", async (req, res) => {
+    const connection = connections[req.params.id];
+    if (connection == null) {
+        return res.redirect("/");
+    }
+
+    if (connection.options == null || connection.options.length === 0) {
+        return res.redirect("/");
+    }
+
+    res.status(200).send(await QRCode.toBuffer("https://balls.jeroenvdg.com/game/"+connection.code));
 })
 
 router.post("/:id", (req, res) => {
