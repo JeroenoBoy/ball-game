@@ -1,7 +1,6 @@
 using System;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,9 @@ namespace UI {
 
         public void Show() {
             gameObject.SetActive(true);
-            qrImage.color = Color.white.WithAlpha(0);
+            Color color = Color.white;
+            color.a = 0;
+            qrImage.color = color;
             SetCode("???-???");
             SetQrCode(null);
         }

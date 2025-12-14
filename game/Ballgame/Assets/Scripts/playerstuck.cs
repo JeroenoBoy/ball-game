@@ -1,4 +1,3 @@
-using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 public class playerstuck : MonoBehaviour
@@ -12,10 +11,6 @@ public class playerstuck : MonoBehaviour
     [SerializeField] float offsetDistance;
     [SerializeField] int Options;
     
-   
-
-
-    // Update is called once per frame
     void Update()
     {       
 

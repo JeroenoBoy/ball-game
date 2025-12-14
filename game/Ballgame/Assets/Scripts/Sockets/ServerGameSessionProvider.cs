@@ -55,7 +55,7 @@ namespace Sockets {
                 throw new Exception("No cod was set");
             }
 
-            UnityWebRequest request = UnityWebRequestTexture.GetTexture($"{uri}game/{code}/code");
+            using UnityWebRequest request = UnityWebRequestTexture.GetTexture($"{uri}game/{code}/code");
             yield return request.SendWebRequest();
             if (request.error != null) {
                 throw new Exception($"Error while gathering QR Code: {request.error}");

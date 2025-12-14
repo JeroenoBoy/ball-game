@@ -57,7 +57,9 @@ namespace GameState {
         }
 
         private IEnumerator ConnectRoutine() {
+            Debug.Log("Connecting to server");
             yield return gameSessionController.Connect();
+            Debug.Log("Connected to server");
             gameSessionController.SetTitle(stateMachine.Title);
             gameSessionController.SetOptions(stateMachine.GameOptions);
         }
