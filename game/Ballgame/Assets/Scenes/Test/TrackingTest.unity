@@ -3203,7 +3203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[3].Rotation.value.w
-      value: 0.08434719
+      value: 0.0843472
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[3].Rotation.value.x
