@@ -12,6 +12,11 @@ namespace Sockets {
             return "xyz-123";
         }
 
+        public IEnumerator GetQrCode(Reference<Texture2D> textureRef) {
+            yield return null;
+            textureRef.Set(new Texture2D(100, 100));
+        }
+
         public void SetTitle(string title) {
             Debug.Log($"[{GetType().Name}] : Set tile to ${title}");
         }

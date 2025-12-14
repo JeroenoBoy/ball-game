@@ -30,10 +30,6 @@ router.get("/:id/code", async (req, res) => {
         return res.redirect("/");
     }
 
-    if (connection.options == null || connection.options.length === 0) {
-        return res.redirect("/");
-    }
-
     res.status(200).send(await QRCode.toBuffer("https://balls.jeroenvdg.com/game/"+connection.code));
 })
 

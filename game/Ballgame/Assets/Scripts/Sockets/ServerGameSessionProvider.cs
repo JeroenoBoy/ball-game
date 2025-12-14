@@ -7,6 +7,7 @@ using SocketIOClient;
 using SocketIOClient.Newtonsoft.Json;
 using Sockets.Exceptions;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Sockets {
     public class ServerGameSessionProvider : IGameSessionProvider {
@@ -48,7 +49,20 @@ namespace Sockets {
             }
             return code;
         }
-        
+
+        public IEnumerator GetQrCode(Reference<Texture2D> textureRef) {
+            if (code == null) {
+                throw new Exception("No cod was set");
+            }
+
+            UnityWebRequest request = UnityWebRequestTexture.GetTexture($"{uri}game/{code}/code");
+            yield return request.SendWebRequest();
+            if (request.error != null) {
+                throw new Exception($"Error while gathering QR Code: {request.error}");
+            }
+            textureRef.Set(((DownloadHandlerTexture)request.downloadHandler).texture);
+        }
+
         public void SetTitle(string title) {
             socket.Emit("title", title);
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Object = System.Object;
 
 namespace Sockets {
     public class GameSessionController : MonoBehaviour {
@@ -13,6 +14,10 @@ namespace Sockets {
 
         public string GetCode() {
             return provider.GetCode();
+        }
+
+        public Coroutine GetQrCode(Reference<Sprite> spriteRef) {
+            return StartCoroutine(FetchCodeRoutine(spriteRef));
         }
 
         public void SetTitle(string name) {
@@ -58,6 +63,17 @@ namespace Sockets {
 
         private void EmitPlayerAdded(GamePlayerDto dto) {
             PlayerAdded.Invoke(dto);
+        }
+
+        private IEnumerator FetchCodeRoutine(Reference<Sprite> spriteRef) {
+            Reference<Texture2D> textureRef = new();
+            yield return provider.GetQrCode(textureRef);
+            if (!textureRef.IsSet()) {
+                throw new Exception("No texture was set");
+            }
+
+            Texture2D texture = textureRef.Get();
+            spriteRef.Set(Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * .5f, 100));
         }
 
         private IGameSessionProvider MakeProvider() {
