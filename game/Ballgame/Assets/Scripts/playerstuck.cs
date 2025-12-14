@@ -25,13 +25,13 @@ public class playerstuck : MonoBehaviour
         }
         else
         {
-            timed = maxtime;
+            timed = Random.Range(maxtime, maxtime + 0.5f);
 
             float distance = Vector3.Distance(transform.position, playerpos);
             
             if (distance < offsetDistance)
             {
-                rb.AddForce(Vector2.up * rbforce);
+                rb.AddForce(new Vector2(Random.Range(-0.5f, 0.5f), 1) * rbforce);
             }
             playerpos = transform.position;
             

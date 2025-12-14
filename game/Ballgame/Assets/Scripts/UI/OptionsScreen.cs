@@ -53,7 +53,7 @@ namespace UI {
             GameOptionWidget widget = Instantiate(gameOptionWidgetPrefab, widgetParent);
             widget.Deleted += HandleWidgetDeleted;
             OptionWidgets.Add(widget);
-            widget.Init(Color.HSVToRGB(Random.Range(0f, 1f), 0.5f, 0.5f));
+            widget.Init(Color.HSVToRGB(Random.Range(0f, 1f), 0.5f, 1f));
             WidgetAdded?.Invoke(widget);
         }
 

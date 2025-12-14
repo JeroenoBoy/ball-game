@@ -61,6 +61,7 @@ namespace Sockets {
                 throw new Exception($"Error while gathering QR Code: {request.error}");
             }
             textureRef.Set(((DownloadHandlerTexture)request.downloadHandler).texture);
+            textureRef.Get().filterMode = FilterMode.Point;
         }
 
         public void SetTitle(string title) {

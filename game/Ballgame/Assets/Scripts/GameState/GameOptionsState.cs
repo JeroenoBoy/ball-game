@@ -24,7 +24,7 @@ namespace GameState {
             foreach (GameOptionWidget optionsScreenOptionWidget in optionsScreen.OptionWidgets) {
                 stateMachine.GameOptions.Add(new GameOptionDto(
                     optionsScreenOptionWidget.OptionName, 
-                    ColorUtility.ToHtmlStringRGB(optionsScreenOptionWidget.OptionColor)
+                    "#" + ColorUtility.ToHtmlStringRGB(optionsScreenOptionWidget.OptionColor)
                 ));
             }
 

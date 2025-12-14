@@ -171,8 +171,9 @@ MonoBehaviour:
   maxtime: 1
   timed: 1
   rb: {fileID: 1913654286843576915}
-  rbforce: 75
+  rbforce: 300
   offsetDistance: 0.1
+  Options: 0
 --- !u!114 &6543274105846076635
 MonoBehaviour:
   m_ObjectHideFlags: 0
