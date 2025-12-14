@@ -3235,19 +3235,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[5].Rotation.value.w
-      value: -0.020039925
+      value: 0.020039922
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[5].Rotation.value.x
-      value: 0.020039918
+      value: -0.020039918
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[5].Rotation.value.y
-      value: 0.70682275
+      value: -0.7068227
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[5].Rotation.value.z
-      value: -0.7068228
+      value: 0.70682275
       objectReference: {fileID: 0}
     - target: {fileID: 3395241217704428440, guid: 6e4de4429e66d53489eb77975555736a, type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[6].Rotation.value.w
